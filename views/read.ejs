@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Cards with Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-zinc-600 min-h-screen">
+
+    <a href="/"><button class="bg-yellow-400 m-2 rounded-md p-1">Back Home</button></a>
+    <!-- Container for cards with flex-wrap -->
+    <div class="flex flex-wrap gap-4">
+        <% if(users.length > 0){ %>
+            <% users.forEach(function(user){ %>
+                <div class="w-64 h-80 rounded overflow-hidden shadow-lg bg-zinc-400">
+                    <div class="flex justify-center">
+                        <img class="w-40 h-40 mt-4 object-cover" src="<%= user.image %>" alt="Profile image">
+                    </div>
+                    <div class="px-4 py-4">
+                        <div class="font-bold text-lg mb-2"><%= user.name %></div>
+                        <p class="text-gray-700 text-sm">
+                            <%= user.email %>
+                        </p>
+                        <div class="flex gap-3 mt-5">
+                            <a href="/edit/<%= user._id %>" class="rounded-lg text-zinc-900">Edit User</a>
+                            <a href="/delete/<%= user._id %>" class="rounded-lg text-zinc-900">Delete User</a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        <% }else{ %>
+            <h2>No Users.!</h2>
+        <% } %>
+        
+    </div>
+
+</body>
+
+</html>
